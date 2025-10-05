@@ -1,7 +1,6 @@
 import { defineConfig, Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { createServer } from "./server";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -35,13 +34,22 @@ function expressPlugin(): Plugin {
     name: "express-plugin",
     apply: "serve", // Only apply during development (serve mode)
     configureServer(server) {
-      const app = createServer();
+      // Lazy-load the server only in dev to avoid importing Prisma at build time
+      let app: any;
+      const ensureServer = async () => {
+        if (!app) {
+          const mod = await import("./server/index.ts");
+          app = mod.createServer();
+        }
+        return app;
+      };
 
       // Only handle API routes; let Vite handle everything else (including index.html)
       server.middlewares.use((req, res, next) => {
         const url = req.url || "";
         if (url.startsWith("/api/")) {
-          return (app as any)(req, res, next);
+          ensureServer().then((appInstance) => (appInstance as any)(req, res, next));
+          return;
         }
         return next();
       });
