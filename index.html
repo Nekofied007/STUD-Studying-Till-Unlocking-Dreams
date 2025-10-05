@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STUD - Transform Your Learning Journey</title>
+    <meta name="description" content="Transform scattered YouTube learning into a curated, interactive journey with AI-powered playlists and gamified progress." />
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.72/build/spline-viewer.js"></script>
+  
+  <!-- Black box overlay to cover Spline watermark -->
+  <style>
+    /* Hide Spline branding elements */
+    spline-viewer::part(branding),
+    spline-viewer::part(watermark),
+    spline-viewer .spline-watermark,
+    spline-viewer .spline-branding,
+    spline-viewer [class*="watermark"],
+    spline-viewer [class*="branding"],
+    spline-viewer [class*="built-with"],
+    spline-viewer [class*="spline-branding"] {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    /* Black box overlay to physically cover watermark area */
+    spline-viewer {
+      position: relative !important;
+      pointer-events: none !important; /* keep scenes non-interactive to avoid intercepting scroll/clicks over header */
+      z-index: 0 !important;
+    }
+
+    spline-viewer::after {
+      content: '' !important;
+      position: absolute !important;
+      bottom: -5px !important;
+      right: -5px !important;
+      width: 250px !important;
+      height: 65px !important;
+      background: #000000 !important;
+  z-index: 999 !important;
+      pointer-events: none !important;
+      border-radius: 12px !important;
+    }
+
+    /* Additional coverage layer */
+    spline-viewer::before {
+      content: '' !important;
+      position: absolute !important;
+      bottom: -8px !important;
+      right: -8px !important;
+      width: 260px !important;
+      height: 70px !important;
+      background: #000000 !important;
+  z-index: 998 !important;
+      pointer-events: none !important;
+      border-radius: 15px !important;
+    }
+  </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="module" src="/client/App.tsx"></script>
+    
+    <!-- Optimized JavaScript to add black box overlays -->
+    <script>
+      let hasInitialized = false;
+      const processedViewers = new WeakSet();
+      
+      function addWatermarkBlockers() {
+        // Use requestAnimationFrame for better performance
+        requestAnimationFrame(() => {
+          const viewers = document.querySelectorAll('spline-viewer');
+          viewers.forEach(viewer => {
+            // Skip if already processed
+            if (processedViewers.has(viewer)) return;
+            
+            // Mark as processed
+            processedViewers.add(viewer);
+            
+            // Create a single optimized blocker
+            const blocker = document.createElement('div');
+            blocker.className = 'spline-watermark-blocker';
+            blocker.style.cssText = `
+              position: absolute !important;
+              bottom: -8px !important;
+              right: -8px !important;
+              width: 260px !important;
+              height: 70px !important;
+              background: #000000 !important;
+              z-index: 999999 !important;
+              pointer-events: none !important;
+              border-radius: 15px !important;
+            `;
+            
+            // Make sure the parent container is positioned relative
+            const parent = viewer.parentElement;
+            if (parent) {
+              const currentPosition = getComputedStyle(parent).position;
+              if (currentPosition === 'static') {
+                parent.style.position = 'relative';
+              }
+              parent.appendChild(blocker);
+            }
+          });
+        });
+      }
+
+      // Single initialization on DOM ready
+      document.addEventListener('DOMContentLoaded', () => {
+        if (!hasInitialized) {
+          hasInitialized = true;
+          addWatermarkBlockers();
+          
+          // Single delayed check for late loaders
+          setTimeout(addWatermarkBlockers, 3000);
+        }
+      });
+    </script>
+  </body>
+</html>
