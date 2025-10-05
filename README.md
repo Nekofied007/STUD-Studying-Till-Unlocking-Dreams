@@ -110,7 +110,20 @@ You can switch DBs by updating your Prisma schema and `DATABASE_URL`.
 
 ## 🚀 Deployment
 - Netlify: `netlify/functions/api.ts` wraps the Express app via `serverless-http`.
-- Vercel/Other: Use the Node build (`pnpm build && pnpm start`) or adapt to a serverless handler.
+- Vercel: Serverless function at `api/index.ts` exports the Express app. `vercel.json` rewrites `/api/*` to this function and serves `dist/spa` for the SPA.
+
+### One-time Vercel setup
+1. Install Vercel CLI (optional)
+	```powershell
+	npm i -g vercel
+	```
+2. Link and deploy
+	```powershell
+	vercel
+	vercel --prod
+	```
+3. Environment (optional for DB)
+	- Set `DATABASE_URL` if you want Prisma DB on Vercel; otherwise the Users API falls back to in-memory storage.
 
 ## 📝 Notes
 - Navbar is fixed with a high z-index; layout uses padding-top utilities so content never hides underneath.
