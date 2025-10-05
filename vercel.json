@@ -4,12 +4,11 @@
   "outputDirectory": "dist/spa",
   "installCommand": "pnpm install",
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api" },
+    { "source": "/api/(.*)", "destination": "/api/index" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "functions": {
-    "api/index.ts": {
-      "runtime": "nodejs18.x",
+    "api/**": {
       "memory": 1024,
       "maxDuration": 10
     }
