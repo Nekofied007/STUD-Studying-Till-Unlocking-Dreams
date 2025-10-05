@@ -1,15 +1,36 @@
-# STUD — Studying Till Unlocking Dreams
+<p align="center">
+	<img src="./assets/banner.svg" alt="STUD banner" width="720" />
+</p>
 
-A production-ready full-stack React application with an Express API, Tailwind UI, GSAP/Framer animations, and Spline-powered backgrounds. Built on a Vite + TypeScript monorepo-style layout with shared types across client and server.
+<h1 align="center">STUD — Studying Till Unlocking Dreams ✨</h1>
 
-## Tech Stack
-- Frontend: React 18, TypeScript, React Router 6 (SPA), TailwindCSS 3, Framer Motion, GSAP
-- 3D/Visuals: Spline Web Component (non-interactive), custom overlays and reveal animations
-- Backend: Express (integrated with Vite), Users API
-- Data: Prisma ORM + SQLite (optional; can run API without DB by switching code paths)
-- Tooling: Vite, Vitest, Zod, pnpm (preferred)
+<p align="center">
+	<strong>Colorful, animated learning landing page + Express API</strong><br/>
+	Built with React + TypeScript + Vite + Tailwind + GSAP/Framer, featuring Spline backgrounds.
+</p>
 
-## Monorepo Layout
+<p align="center">
+	<a href="https://github.com/Nekofied007/STUD-Studying-Till-Unlocking-Dreams-/actions" target="_blank">
+		<img src="https://img.shields.io/badge/CI-ready-22c55e?style=for-the-badge&logo=githubactions&logoColor=white" alt="CI ready"/>
+	</a>
+	<img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=061d2f" alt="React 18"/>
+	<img src="https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite"/>
+	<img src="https://img.shields.io/badge/TailwindCSS-3-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind"/>
+	<img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TS"/>
+	<img src="https://img.shields.io/badge/GSAP-3-88CC14?style=for-the-badge&logo=greensock&logoColor=0b0b0f" alt="GSAP"/>
+	<img src="https://img.shields.io/badge/Framer%20Motion-12-111827?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion"/>
+</p>
+
+---
+
+## 🚀 Tech Stack
+- 🧠 Frontend: React 18, TypeScript, React Router 6 (SPA), TailwindCSS 3, Framer Motion, GSAP
+- 🌌 Visuals: Spline Web Component (non-interactive), reveal animations, overlays
+- 🛠️ Backend: Express (integrated with Vite) + Users API (Zod validation)
+- 🗄️ Data: Prisma ORM + SQLite (optional)
+- ⚙️ Tooling: Vite, Vitest, Zod, pnpm
+
+## 📁 Project Structure
 ```
 client/      # React SPA
 server/      # Express API (integrated with Vite dev server)
@@ -18,24 +39,24 @@ netlify/     # Serverless adapter (optional)
 ```
 
 Key files:
-- `client/pages/Index.tsx`: Landing page with multiple animated sections and Spline scenes
-- `client/components/Navbar.tsx`: Fixed top navigation bar
-- `server/index.ts`: Express app with `/api/ping`, `/api/demo`, and `/api/users` routes
-- `shared/api.ts`: Types shared between client and server
+- `client/pages/Index.tsx` — Animated landing page with multiple Spline scenes
+- `client/components/Navbar.tsx` — Fixed top navigation bar
+- `server/index.ts` — Express app with `/api/ping`, `/api/demo`, `/api/users`
+- `shared/api.ts` — Types shared between client and server
 
-## Features
-- Animated landing page: Hero, Problem, Process, Features, Vision, and CTA sections
-- Fixed, transparent navbar with blur and consistent height across breakpoints
-- Spline scenes are lazy-loaded (except hero) and non-interactive to avoid event capture
-- Watermark coverage via safe overlays with minimal overhead
-- Users API with zod validation and Prisma-based persistence (SQLite)
-- Serverless entry (`netlify/functions/api.ts`) for easy Netlify deployment
+## ✨ Features
+- 🎬 Animated sections: Hero, Problem, Process, Features, Vision, CTA
+- 🧊 Glass/blur navbar (fixed) with content offsets for perfect scroll behavior
+- 🎛️ Spline scenes: lazy-loaded (except hero), non-interactive to avoid event capture
+- 🧩 Watermark covered via lightweight overlays (no heavy observers)
+- 🔐 Users API with Zod validation and Prisma persistence
+- ☁️ Serverless entry (`netlify/functions/api.ts`) for Netlify
 
-## Getting Started
+## 🧑‍💻 Getting Started
 
 ### Prerequisites
 - Node.js 18+
-- pnpm (recommended). If you don’t have pnpm, you can use npm, but scripts reference pnpm in docs.
+- pnpm (recommended). You can use npm, but docs below show pnpm.
 
 ### Install
 ```powershell
@@ -46,10 +67,10 @@ pnpm install
 ### Development
 ```powershell
 pnpm dev
-# Opens Vite on an available port (e.g., http://localhost:8085)
+# Vite will choose an available port (e.g., http://localhost:8085)
 ```
 
-### Typecheck and Test
+### Typecheck & Test
 ```powershell
 pnpm typecheck
 pnpm test
@@ -58,8 +79,8 @@ pnpm test
 ### Build
 ```powershell
 pnpm build
-# Client build -> dist/spa
-# Server build -> dist/server
+# Client -> dist/spa
+# Server -> dist/server
 ```
 
 ### Start (production)
@@ -68,7 +89,7 @@ pnpm start
 # Runs the built Express server from dist/server/node-build.mjs
 ```
 
-## API
+## 🔌 API
 - `GET /api/ping` → `{ message: string }`
 - `GET /api/demo` → demo payload
 - `GET /api/users` → `{ users: User[] }`
@@ -78,23 +99,29 @@ pnpm start
 
 Types are defined in `shared/api.ts`.
 
-## Prisma + SQLite (optional)
-The Users API expects Prisma to be configured. If you’re running fresh:
+## 🗃️ Prisma + SQLite (optional)
+If you’re running fresh:
 ```powershell
 # Initialize the SQLite DB
 pnpm dlx prisma generate
 pnpm dlx prisma migrate dev --name init
 ```
+You can switch DBs by updating your Prisma schema and `DATABASE_URL`.
 
-You can also swap to a different database by updating your Prisma schema and `DATABASE_URL`.
+## 🚀 Deployment
+- Netlify: `netlify/functions/api.ts` wraps the Express app via `serverless-http`.
+- Vercel/Other: Use the Node build (`pnpm build && pnpm start`) or adapt to a serverless handler.
 
-## Deployment
-- Netlify: The included `netlify/functions/api.ts` wraps the Express app via `serverless-http`.
-- Vercel/Other: Use the Node build (`pnpm build && pnpm start`) or adapt the serverless handler.
+## 📝 Notes
+- Navbar is fixed with a high z-index; layout uses padding-top utilities so content never hides underneath.
+- Spline viewers use `pointer-events: none` and low z-index to avoid intercepting interactions.
 
-## Notes
-- The navbar is fixed with high z-index and the layout uses padding-top utilities to ensure content isn’t hidden underneath.
-- Spline viewer components are rendered with `pointer-events: none` and lowered z-index so they never interfere with UI interactions.
+---
 
-## License
-MIT
+<p align="center">
+	<img src="./assets/logo.svg" alt="STUD logo" width="80"/>
+	<br/>
+	<sub>Studying Till Unlocking Dreams</sub>
+	<br/>
+	<sub>MIT License</sub>
+</p>

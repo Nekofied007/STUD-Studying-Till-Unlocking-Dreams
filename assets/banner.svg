@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="280" viewBox="0 0 1200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gb" x1="0" y1="0" x2="1200" y2="280" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="0.33" stop-color="#3B82F6"/>
+      <stop offset="0.66" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#A855F7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="280" rx="24" fill="#0B0B0F"/>
+  <rect x="8" y="8" width="1184" height="264" rx="20" fill="#0E0E14" stroke="url(#gb)" stroke-width="2"/>
+  <text x="140" y="160" fill="#FFFFFF" font-family="Segoe UI, Inter, Arial, sans-serif" font-weight="800" font-size="64">STUD</text>
+  <text x="140" y="210" fill="#A3A3A3" font-family="Segoe UI, Inter, Arial, sans-serif" font-weight="600" font-size="22">Studying Till Unlocking Dreams</text>
+  <g>
+    <circle cx="80" cy="140" r="48" fill="url(#gb)" opacity="0.15"/>
+    <text x="80" y="152" text-anchor="middle" font-family="Segoe UI, Inter, Arial, sans-serif" font-weight="900" font-size="46" fill="#FFFFFF">S</text>
+  </g>
+</svg>
