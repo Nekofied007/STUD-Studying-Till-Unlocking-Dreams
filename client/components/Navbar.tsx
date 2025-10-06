@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import studLogo from "../../assets/logo.svg";
 
 const sections = [
   { id: "problem", label: "Problem" },
