@@ -22,7 +22,7 @@ const App = () => (
       <BrowserRouter>
   <div className="min-h-screen flex flex-col bg-black">
           <Navbar />
-          <main className="flex-1 bg-black pt-[76px] md:pt-[84px] lg:pt-[92px]">
+          <main className="flex-1 bg-black">
             <Routes>
               <Route path="/" element={<Index />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

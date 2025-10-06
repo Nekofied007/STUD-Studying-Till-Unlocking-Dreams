@@ -209,24 +209,4 @@
   .soft-top-light {
     background: radial-gradient(1200px 400px at 50% -10%, rgba(59,130,246,0.12), transparent 60%);
   }
-
-  /* Utility to account for fixed header height across breakpoints */
-  .with-fixed-header {
-    padding-top: 76px;
-  }
-  @media (min-width: 768px) {
-    .with-fixed-header { padding-top: 84px; }
-  }
-  @media (min-width: 1024px) {
-    .with-fixed-header { padding-top: 92px; }
-  }
-
-  /* Anchor offsets so content isn't hidden under fixed navbar */
-  section[id] { scroll-margin-top: 76px; }
-  @media (min-width: 768px) {
-    section[id] { scroll-margin-top: 84px; }
-  }
-  @media (min-width: 1024px) {
-    section[id] { scroll-margin-top: 92px; }
-  }
 }

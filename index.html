@@ -27,8 +27,6 @@
     /* Black box overlay to physically cover watermark area */
     spline-viewer {
       position: relative !important;
-      pointer-events: none !important; /* keep scenes non-interactive to avoid intercepting scroll/clicks over header */
-      z-index: 0 !important;
     }
 
     spline-viewer::after {
@@ -39,7 +37,7 @@
       width: 250px !important;
       height: 65px !important;
       background: #000000 !important;
-  z-index: 999 !important;
+      z-index: 999999 !important;
       pointer-events: none !important;
       border-radius: 12px !important;
     }
@@ -53,7 +51,7 @@
       width: 260px !important;
       height: 70px !important;
       background: #000000 !important;
-  z-index: 998 !important;
+      z-index: 999998 !important;
       pointer-events: none !important;
       border-radius: 15px !important;
     }

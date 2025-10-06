@@ -79,9 +79,9 @@ export default function Index() {
   }, []);
 
   return (
-    <div className="grain vignette with-fixed-header">
-    {/* Hero Section with Spline Animation */}
-  <section className="relative overflow-hidden min-h-screen soft-top-light pt-24 md:pt-28">
+    <div className="grain vignette">
+      {/* Hero Section with Spline Animation */}
+  <section className="relative overflow-hidden min-h-screen soft-top-light">
         <div className="absolute inset-0">
           {/* @ts-ignore - custom element provided by external script */}
           <spline-viewer
