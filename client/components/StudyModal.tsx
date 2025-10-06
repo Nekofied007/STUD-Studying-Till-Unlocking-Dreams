@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X, Youtube, BookOpen, MapPin, Brain, ClipboardCheck, Route } from "lucide-react";
+import type { ProcessStudyRequest, ProcessStudyResponse, StudyProcessAction } from "@shared/api";
 
 interface StudyModalProps {
   isOpen: boolean;
@@ -11,22 +12,35 @@ interface StudyModalProps {
 
 export function StudyModal({ isOpen, onClose }: StudyModalProps) {
   const [url, setUrl] = useState("");
+  const [loading, setLoading] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<ProcessStudyResponse | null>(null);
 
-  const handleSubmit = (action: string) => {
+  const handleSubmit = async (action: StudyProcessAction) => {
     if (!url.trim()) {
-      alert("Please enter a YouTube or Udemy URL first!");
+      setError("Please enter a YouTube or Udemy URL first!");
       return;
     }
-    
-    // Here you can handle the different actions
-    console.log(`Action: ${action}, URL: ${url}`);
-    
-    // For now, just show an alert - you can replace this with actual API calls
-    alert(`Starting ${action} for: ${url}`);
-    
-    // Close modal after action
-    onClose();
-    setUrl("");
+    setLoading(action);
+    setError(null);
+    setResult(null);
+    try {
+      const body: ProcessStudyRequest = { url, action };
+      const res = await fetch("/api/study/process", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data: ProcessStudyResponse = await res.json();
+      if (!res.ok || data.status === "error") {
+        throw new Error(data?.message || "Failed to process");
+      }
+      setResult(data);
+    } catch (e: any) {
+      setError(e?.message ?? "Something went wrong");
+    } finally {
+      setLoading(null);
+    }
   };
 
   const actionButtons = [
@@ -125,6 +139,9 @@ export function StudyModal({ isOpen, onClose }: StudyModalProps) {
                     onChange={(e) => setUrl(e.target.value)}
                     className="pl-20 pr-4 py-6 text-lg bg-white/5 border-white/20 rounded-2xl text-white placeholder:text-white/50 focus:border-blue-400/50 focus:ring-2 focus:ring-blue-400/20 transition-all duration-200"
                   />
+                  {error && (
+                    <div className="mt-2 text-sm text-rose-300">{error}</div>
+                  )}
                 </div>
               </motion.div>
 
@@ -138,8 +155,9 @@ export function StudyModal({ isOpen, onClose }: StudyModalProps) {
                     transition={{ delay: 0.3 + index * 0.1 }}
                   >
                     <Button
-                      onClick={() => handleSubmit(button.title)}
+                      onClick={() => handleSubmit(button.id as StudyProcessAction)}
                       className={`w-full p-6 h-auto rounded-2xl bg-gradient-to-r ${button.gradient} ${button.hoverGradient} text-white font-semibold text-left shadow-lg ${button.shadowColor} transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group`}
+                      disabled={!!loading}
                     >
                       <div className="flex items-center gap-4">
                         <div className="p-3 rounded-xl bg-white/20 group-hover:bg-white/30 transition-colors duration-200">
@@ -149,14 +167,46 @@ export function StudyModal({ isOpen, onClose }: StudyModalProps) {
                           <div className="text-lg font-bold mb-1">{button.title}</div>
                           <div className="text-white/80 text-sm">{button.description}</div>
                         </div>
-                        <div className="text-white/60 group-hover:text-white/80 transition-colors duration-200">
-                          →
+                        <div className="text-white/80">
+                          {loading === button.id ? "Processing…" : "→"}
                         </div>
                       </div>
                     </Button>
                   </motion.div>
                 ))}
               </div>
+
+              {/* Results */}
+              {result && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4 text-white/90 text-sm"
+                >
+                  <div className="mb-2 font-semibold">{result.message}</div>
+                  {result.data?.playlists && (
+                    <ul className="list-disc pl-6 space-y-1">
+                      {result.data.playlists.map((p, i) => (
+                        <li key={i}>{p.title} — {p.items} items</li>
+                      ))}
+                    </ul>
+                  )}
+                  {result.data?.quizzes && (
+                    <ul className="list-disc pl-6 space-y-1">
+                      {result.data.quizzes.map((q, i) => (
+                        <li key={i}>{q.topic} — {q.questions} questions</li>
+                      ))}
+                    </ul>
+                  )}
+                  {result.data?.roadmap && (
+                    <ul className="list-disc pl-6 space-y-1">
+                      {result.data.roadmap.map((r, i) => (
+                        <li key={i}>{r.phase} — {r.durationWeeks} weeks</li>
+                      ))}
+                    </ul>
+                  )}
+                </motion.div>
+              )}
 
               {/* Footer */}
               <motion.div

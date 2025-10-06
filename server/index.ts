@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { usersRouter } from "./routes/users.ts";
+import { handleStudyProcess } from "./routes/study";
 
 export function createServer() {
   const app = express();
@@ -19,6 +20,9 @@ export function createServer() {
   });
 
   app.get("/api/demo", handleDemo);
+
+  // Study processing demo endpoint
+  app.post("/api/study/process", handleStudyProcess);
 
   // Users API (in-memory by default; see README steps to switch to Prisma)
   app.use("/api/users", usersRouter);

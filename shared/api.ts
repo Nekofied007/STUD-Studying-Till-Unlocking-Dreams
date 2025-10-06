@@ -22,3 +22,22 @@ export interface CreateUserBody {
   name: string;
   email: string;
 }
+
+// Study processing API
+export type StudyProcessAction = "playlists" | "quizzes" | "roadmap";
+
+export interface ProcessStudyRequest {
+  url: string;
+  action: StudyProcessAction;
+}
+
+export interface ProcessStudyResponse {
+  status: "ok" | "error";
+  message: string;
+  // Optional demo payloads per action
+  data?: {
+    playlists?: Array<{ title: string; items: number }>;
+    quizzes?: Array<{ topic: string; questions: number }>;
+    roadmap?: Array<{ phase: string; durationWeeks: number }>;
+  };
+}
