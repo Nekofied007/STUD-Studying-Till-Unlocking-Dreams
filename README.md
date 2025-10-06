@@ -1,21 +1,21 @@
 <div align="center">
 
-	<img src="./assets/logo.svg" alt="STUD Logo" width="100" />
+<img src="./assets/logo.svg" alt="STUD Logo" width="100" />
 
-	<h1>STUD — Studying Till Unlocking Dreams ✨</h1>
+<h1>STUD — Studying Till Unlocking Dreams ✨</h1>
 
-	<p>
-		<strong>A cinematic, colorful learning experience</strong> built with React + Tailwind, 3D Spline scenes, and a tiny Express backend. <br/>
-		AI-flavored helpers curate playlists, quizzes, and a study roadmap from your course URL. 🚀
-	</p>
+<p>
+<strong>A cinematic, colorful learning experience</strong> built with React + Tailwind, 3D Spline scenes, and a tiny Express backend. <br/>
+AI-flavored helpers curate playlists, quizzes, and a study roadmap from your course URL. 🚀
+</p>
 
-	<p>
-		<a href="https://github.com/Nekofied007/STUD-Studying-Till-Unlocking-Dreams/actions"><img alt="CI" src="https://github.com/Nekofied007/STUD-Studying-Till-Unlocking-Dreams/actions/workflows/ci.yml/badge.svg" /></a>
-		<img alt="Made with Vite" src="https://img.shields.io/badge/Vite-7.x-646CFF?logo=vite&logoColor=white" />
-		<img alt="React" src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=061c24" />
-		<img alt="Express" src="https://img.shields.io/badge/Express-5-black?logo=express&logoColor=white" />
-		<img alt="Tailwind" src="https://img.shields.io/badge/TailwindCSS-3-38BDF8?logo=tailwindcss&logoColor=white" />
-	</p>
+<p>
+<a href="https://github.com/Nekofied007/STUD-Studying-Till-Unlocking-Dreams/actions"><img alt="CI" src="https://github.com/Nekofied007/STUD-Studying-Till-Unlocking-Dreams/actions/workflows/ci.yml/badge.svg" /></a>
+<img alt="Made with Vite" src="https://img.shields.io/badge/Vite-7.x-646CFF?logo=vite&logoColor=white" />
+<img alt="React" src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=061c24" />
+<img alt="Express" src="https://img.shields.io/badge/Express-5-black?logo=express&logoColor=white" />
+<img alt="Tailwind" src="https://img.shields.io/badge/TailwindCSS-3-38BDF8?logo=tailwindcss&logoColor=white" />
+</p>
 
 </div>
 
