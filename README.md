@@ -101,12 +101,20 @@ Server handler: `server/routes/study.ts` uses Zod to validate and returns mocked
 
 ### Vercel ▶️
 
+Deploy with one click:
+
+<a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FNekofied007%2FSTUD-Studying-Till-Unlocking-Dreams&project-name=stud&repository-name=STUD-Studying-Till-Unlocking-Dreams&build-command=pnpm%20build&install-command=pnpm%20install&output-directory=dist%2Fspa">
+	<img src="https://vercel.com/button" alt="Deploy with Vercel" />
+</a>
+
+Manual steps:
+
 1. Push to GitHub (done!)
 2. Import the repo on Vercel
-3. Build command: `pnpm build`
-4. Output directory: `dist/spa` (Vite client output)
-5. Install command: `pnpm install`
-6. Start command (SSR/server on Vercel functions is optional). For pure SPA hosting, you may only deploy the `dist/spa` folder. If using serverless, wire `server/index.ts` with `serverless-http` (already available) and create an API function.
+3. Install command: `pnpm install`
+4. Build command: `pnpm build`
+5. Output directory: `dist/spa`
+6. API: `/api/study/process` is provided via Vercel Function at `api/study/process.ts` (configured in `vercel.json`).
 
 Tips:
 - Ensure `@` and `@shared` path aliases work in your bundler (provided by Vite config).
