@@ -111,8 +111,8 @@ Manual steps:
 
 1. Push to GitHub (done!)
 2. Import the repo on Vercel
-3. Install command: `pnpm install`
-4. Build command: `pnpm build`
+3. Install command: `npm install`
+4. Build command: `npm build`
 5. Output directory: `dist/spa`
 6. API: `/api/study/process` is provided via Vercel Function at `api/study/process.ts` (configured in `vercel.json`).
 
