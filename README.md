@@ -1,6 +1,11 @@
 <div align="center">
 
-<img src="./assets/logo.svg" alt="STUD Logo" width="100" />
+<picture>
+	<!-- Drop the provided image at ./assets/stud-readme-logo.png (or .jpg); this markup prefers it for README only -->
+	<source srcset="./assets/stud-readme-logo.png" type="image/png" />
+	<source srcset="./assets/stud-readme-logo.jpg" type="image/jpeg" />
+	<img src="./assets/logo.svg" alt="STUD Logo" width="160" />
+</picture>
 
 <h1>STUD — Studying Till Unlocking Dreams ✨</h1>
 
