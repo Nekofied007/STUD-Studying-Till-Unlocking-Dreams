@@ -44,13 +44,13 @@ STUD is a production-ready full-stack template tailored into a stylish landing p
 1) Install deps
 
 ```powershell
-pnpm install
+npm install
 ```
 
 2) Dev mode (client + server integrated)
 
 ```powershell
-pnpm dev
+npm dev
 ```
 
 3) Open app
