@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/stud-logo.png" alt="STUD Logo" width="240" />
+<img src="./assets/stud-readme-logo.png" alt="STUD Logo" width="240" />
 
 <h1>STUD — Studying Till Unlocking Dreams ✨</h1>
 
