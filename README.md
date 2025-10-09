@@ -124,7 +124,7 @@ Tips:
 
 Netlify config is included in `netlify.toml` and `netlify/functions/api.ts`.
 
-1. Build command: `pnpm build`
+1. Build command: `npm build`
 2. Publish directory: `dist/spa`
 3. Functions directory: `netlify/functions`
 
@@ -148,11 +148,11 @@ public/        # Static assets
 
 ## Scripts 📜
 
-- `pnpm dev` — Vite dev server (frontend + express integration)
-- `pnpm build` — Build client + server
-- `pnpm start` — Run the built server
-- `pnpm typecheck` — Run TypeScript
-- `pnpm test` — Run Vitest
+- `npm dev` — Vite dev server (frontend + express integration)
+- `npm build` — Build client + server
+- `npm start` — Run the built server
+- `npm typecheck` — Run TypeScript
+- `npm test` — Run Vitest
 
 ## Credits 💜
 
